@@ -7,9 +7,13 @@ Convolutional Neural Network (CNN) is a subtype of Neural Networks that is mainl
 ## Data
 Data used for this project comes from WikiArt, the MET collection, and several directly from Google search engine. WikiArt images were used for prototype testing, which is the "Final-Project-Prototype" file. It yields good accuracy, but the dataset is poorly balanced with poor resolution.
 
-The final training dataset uses images from the MET collection, and has the categories as follows: Near East[^1] 150 images, Egyptian 250 images, Greek 200 images, and Roman 50 images. Images only have one category in the MET collection, and has at least 72*72 resolution. To balance the data distribution, I also tested 1)Near East 150 images, Egyptian 300 images, Greek 250 images[^2], and 2)Egyptian 250 images, Greek+Roman 250+50=300 images[^3]. 1 yields an 80% accuracy for Greek; and 2 yields a 67% overall accuracy rate.
+The final training dataset uses images from the MET collection, and has the categories as follows: Near East[^1] 150 images, Egyptian 250 images, Greek 200 images, and Roman 50 images. Images only have one category in the MET collection, and has at least 72*72 resolution. 
 
-[You can find the link to download the images I used in this link.]([https://www.google.com](https://drive.google.com/drive/folders/1dqcusMaq_19r6rkIIgJHlU9Mt2Pexwxt?usp=drive_link)https://drive.google.com/drive/folders/1dqcusMaq_19r6rkIIgJHlU9Mt2Pexwxt?usp=drive_link)
+To balance the data distribution, I also tested:
+* Near East 150 images, Egyptian 300 images, Greek 250 images[^2]
+* Egyptian 250 images, Greek+Roman 250+50=300 images[^3]. 
+
+[You can find the image data using this link.](https://drive.google.com/drive/folders/1dqcusMaq_19r6rkIIgJHlU9Mt2Pexwxt?usp=drive_link)
 
 [^1]: The Near East category is a discrete set of artworks in the following categories: Phrygian, Assyrian, Iran, Achaemenid, Urartian, Israelite, Scythian, Babylonian, Parthian, Cypriot, Hillite, and Xiong Nu.
 [^2]: This combination is to offset the really small Roman category.
@@ -49,7 +53,7 @@ Results of 2 models on the original dataset:
 <img width="750" alt="2 Model on Original Dataset, Accuracy Bar Plot" src="https://github.com/Yuhan-Wang-yw/Mystery-Art-Object-Recognizer/assets/102437257/c5a7cf95-0334-480c-9420-d1fdcceb4d21" >
 <img width="750" alt="2 Model on Original Dataset, Confusion Matrix" src="https://github.com/Yuhan-Wang-yw/Mystery-Art-Object-Recognizer/assets/102437257/e9cbab5d-68db-489e-949e-71ab9cb7ef2a">
 
-Then coming to different categorizations, it definitely helps to improve the model's performance. I think it will be more interesting to dig deeper into the model and find out what features of the images lead to its prediction at this moment.
+Then coming to different categorizations, it definitely helps to improve the model's performance. Deleting Roman yields an 80% accuracy for Greek; and building a balanced dataset yields a 67% overall accuracy rate.I think it will be more interesting to dig deeper into the model and find out what features of the images lead to its prediction at this moment.
 
 Results of Tensorflow model on 3 different categorizations:
 <img width="750" alt="Tensorflow Model on 3 categorizations" src="https://github.com/Yuhan-Wang-yw/Mystery-Art-Object-Recognizer/assets/102437257/ec07a264-99f6-4b1f-8549-6c64d32dbb22">

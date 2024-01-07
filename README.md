@@ -1,27 +1,36 @@
 # Mystery-Art-Object-Recognition
 A CNN(convolutional neural network) model to classify images of artworks of ancient cities and to recognize the style of mystery artworks. Final project for MTH 353 Seminar in Deep Learning &amp; ARH 212 Ancient Cities and Sanctuaries.
 
+## Table of Contents
+- [Brief Abstract](#brief-abstract)
+- [Data](#data)
+- [Model](#model)
+- [Evaluation & Results](#er)
+- [Final Thoughts](#final-thoughts)
+- [Mathematics in the project](#mathematics-in-the-project)
+
 ## Brief Abstract
-Convolutional Neural Network (CNN) is a subtype of Neural Networks that is mainly used for applications in image recognition. For our final project, we plan to train a CNN that recognizes artworks from ancient Near Eastern, Egyptian, Minoan, Mycenaean, Greek, Etruscan, Roman that were introduced in the ARH 212 course. The training data of this CNN would be pictures of artworks from those cultures, and we will split the pictures into small fractions so that we can both have more data for training and focus on details of the pictures. The label for the training data will be the culture origin of the artworks in the photo. With this trained neural network, we will choose a photo of a mystery object from one of the categories and ask the neural network to predict what culture or time period the mystery object is from. This will be a classification problem.
+Convolutional Neural Network (CNN) is a subtype of Neural Networks that is mainly used for applications in image recognition. For the final project, I trained a CNN that recognizes artworks from ancient Near Eastern, Egyptian, Greek, and Roman styles that were introduced in the ARH 212 course. The training data of this CNN are pictures of artworks from those cultures. The label for the training data is the culture origin of the artworks in the images. The trained neural network was used to predict what culture a collection of mystery objects was from. The model's performance was highly dependent on the data distribution on different categories, and the final results indicated Greek styled artworks' high resemblance to both Egyptian and Roman styles.
 
 ## Data
 Data used for this project comes from WikiArt, the MET collection, and several directly from Google search engine. WikiArt images were used for prototype testing, which is the "Final-Project-Prototype" file. It yields good accuracy, but the dataset is poorly balanced with poor resolution.
 
-The final training dataset uses images from the MET collection, and has the categories as follows: Near East[^1] 150 images, Egyptian 250 images, Greek 200 images, and Roman 50 images. Images only have one category in the MET collection, and has at least 72*72 resolution. 
+The final training dataset uses images from the MET collection, and has the categories as follows: Near East[^1] 150 images, Egyptian 250 images, Greek 200 images, and Roman[^2] 50 images. Images only have one category in the MET collection, and has at least 72*72 resolution. 
 
 To balance the data distribution, I also tested:
-* Near East 150 images, Egyptian 300 images, Greek 250 images[^2]
-* Egyptian 250 images, Greek+Roman 250+50=300 images[^3]. 
+* Near East 150 images, Egyptian 300 images, Greek 250 images[^3]
+* Egyptian 250 images, Greek+Roman 250+50=300 images[^4]. 
 
 [You can find the image data using this link.](https://drive.google.com/drive/folders/1dqcusMaq_19r6rkIIgJHlU9Mt2Pexwxt?usp=drive_link)
 
 [^1]: The Near East category is a discrete set of artworks in the following categories: Phrygian, Assyrian, Iran, Achaemenid, Urartian, Israelite, Scythian, Babylonian, Parthian, Cypriot, Hillite, and Xiong Nu.
-[^2]: This combination is to offset the really small Roman category.
-[^3]: This combination is to have a binary classification with equal number of artworks. However, as indicated by the final result, Greek has a similar level of resemblance to both Egyptian and Roman, meaning that adding Roman to Egyptian might makes the model more difficult to recognize, even thought the two category has equal number of data. 
+[^2]: Roman contains several artworks from Etruscan.
+[^3]: This combination is to offset the really small Roman category.
+[^4]: This combination is to have a binary classification with equal number of artworks. However, as indicated by the final result, Greek has a similar level of resemblance to both Egyptian and Roman, meaning that adding Roman to Egyptian might makes the model more difficult to recognize, even thought the two category has equal number of data. 
 
 For testing, or the "Mystery Art Object Reconition", I tested out with the images in "Mixed_Categories", which are images that have multiple styles as labels or don't have a settled style from the MET collection.
 
-You can see a snippet of the image data[^4] here: 
+You can see a snippet of the image data[^5] here: 
 
 <img src="https://github.com/Yuhan-Wang-yw/Mystery-Art-Object-Recognizer/assets/102437257/10aa8471-0d85-4ea0-85b0-dd60e1aa0015" alt="Image Data Snippet" width="450"/>
 <br />
@@ -29,7 +38,7 @@ You can see a snippet of the image data[^4] here:
 Some Image augenmentation is applied to prevent overfitting as follows: 
 <img src="https://github.com/Yuhan-Wang-yw/Mystery-Art-Object-Recognizer/assets/102437257/49abbf64-650e-4122-a797-d2abb23731ad" alt="Image Augmentation Preview" width="450"/>
 
-[^4]:You can see that images are rescaled to the same size (256*256) without preserving its original ratio, because after testing, not preserving its ratio makes the model to perform slightly better. My guess is that it's more important for the model to know its outer shape, instead of focusing on the detailed pattern and color.
+[^5]:You can see that images are rescaled to the same size (256*256) without preserving its original ratio, because after testing, not preserving its ratio makes the model to perform slightly better. My guess is that it's more important for the model to know its outer shape, instead of focusing on the detailed pattern and color.
 
 ## Model
 The models I used are CNNs, one Keras and one Tensorflow. (Keras is model 1, Tensorflow is model 2) Essentially they are the same thing, but the Keras one is more nuanced with multiple layers, while the Tensorflow one is really a high-level, basic CNN, with 3 hidden layers.
@@ -37,7 +46,7 @@ The models I used are CNNs, one Keras and one Tensorflow. (Keras is model 1, Ten
 I trained both model with the original dataset(4 categories)-- the Keras model yields better result on the overall accuracy. However, the Keras model takes around 2.5 hours to train itself, so Tensorflow basic model is used for the different category experimenting and the final testing. For the number of epochs, I just go with typical 25. The validation result somehow does not improve as well, and the model's performance is not as stable. Therefore, 25 is a good amount to reach a good accuracy while not being too long to train.
 <img width="400" alt="Accuracy & Loss of Model 2 training" src="https://github.com/Yuhan-Wang-yw/Mystery-Art-Object-Recognizer/assets/102437257/c9fc654b-545b-483f-b544-c65eb2ede468" >
 
-## Evaluation & Results
+## Evaluation & Results <a name='er'></a>
 Here is a table showing the overall results.
 |       Model       |                Data               |  Accuracy  |
 | ----------------- |:---------------------------------:| :---------:|

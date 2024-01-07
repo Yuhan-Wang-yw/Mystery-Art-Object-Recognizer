@@ -30,12 +30,11 @@ To balance the data distribution, I also tested:
 
 For testing, or the "Mystery Art Object Reconition", I tested out with the images in "Mixed_Categories", which are images that have multiple styles as labels or don't have a settled style from the MET collection.
 
-You can see a snippet of the image data[^5] here: 
-
+You can see a snippet of the image data[^5] here: <br />
 <img src="https://github.com/Yuhan-Wang-yw/Mystery-Art-Object-Recognizer/assets/102437257/10aa8471-0d85-4ea0-85b0-dd60e1aa0015" alt="Image Data Snippet" width="450"/>
 <br />
 <br />
-Some Image augenmentation is applied to prevent overfitting as follows: 
+Some Image augenmentation is applied to prevent overfitting as follows: <br />
 <img src="https://github.com/Yuhan-Wang-yw/Mystery-Art-Object-Recognizer/assets/102437257/49abbf64-650e-4122-a797-d2abb23731ad" alt="Image Augmentation Preview" width="450"/>
 
 [^5]:You can see that images are rescaled to the same size (256*256) without preserving its original ratio, because after testing, not preserving its ratio makes the model to perform slightly better. My guess is that it's more important for the model to know its outer shape, instead of focusing on the detailed pattern and color.
@@ -47,7 +46,7 @@ I trained both model with the original dataset(4 categories)-- the Keras model y
 <img width="400" alt="Accuracy & Loss of Model 2 training" src="https://github.com/Yuhan-Wang-yw/Mystery-Art-Object-Recognizer/assets/102437257/c9fc654b-545b-483f-b544-c65eb2ede468" >
 
 ## Evaluation & Results <a name='er'></a>
-Here is a table showing the overall results.
+Here is a table showing the overall results.<br />
 |       Model       |                Data               |  Accuracy  |
 | ----------------- |:---------------------------------:| :---------:|
 | Model 2, epoch 10 |              Wiki Art             |    0.77    |
@@ -58,16 +57,16 @@ Here is a table showing the overall results.
 
 The model overall reached an accuracy around 60%, which is not as ideal. Because the training takes much time, and the artwroks from ancient cultures indeed have many similar features, it is hard to know whether this is a good stopping point, or there are some potential places to work on to improve the model. The model's performance at this stage seems to really be dependent on the data available for one category.
 
-Results of 2 models on the original dataset:
+Results of 2 models on the original dataset:<br />
 <img width="750" alt="2 Model on Original Dataset, Accuracy Bar Plot" src="https://github.com/Yuhan-Wang-yw/Mystery-Art-Object-Recognizer/assets/102437257/c5a7cf95-0334-480c-9420-d1fdcceb4d21" >
 <img width="750" alt="2 Model on Original Dataset, Confusion Matrix" src="https://github.com/Yuhan-Wang-yw/Mystery-Art-Object-Recognizer/assets/102437257/e9cbab5d-68db-489e-949e-71ab9cb7ef2a">
 
 Then coming to different categorizations, it definitely helps to improve the model's performance. Deleting Roman yields an 80% accuracy for Greek; and building a balanced dataset yields a 67% overall accuracy rate.I think it will be more interesting to dig deeper into the model and find out what features of the images lead to its prediction at this moment.
 
-Results of Tensorflow model on 3 different categorizations:
+Results of Tensorflow model on 3 different categorizations:<br />
 <img width="750" alt="Tensorflow Model on 3 categorizations" src="https://github.com/Yuhan-Wang-yw/Mystery-Art-Object-Recognizer/assets/102437257/ec07a264-99f6-4b1f-8549-6c64d32dbb22">
 
-Then coming to the prediction, the model definitely is more confident to (or prefer to) predicting Greek and Egyptian, as it never predicts the artwork to be Roman even though it is trained on 4 categories.
+Then coming to the prediction, the model definitely is more confident to (or prefer to) predicting Greek and Egyptian, as it never predicts the artwork to be Roman even though it is trained on 4 categories.<br />
 <img src="https://github.com/Yuhan-Wang-yw/Mystery-Art-Object-Recognizer/assets/102437257/9b9e6b40-2a0e-4c5e-a7d3-adac73499838" alt="Model Prediction on Mystery Object Confusion Matrix" width="450"/>
 
 Greek and Egyptian are the two that are predicted the most, while Roman is never predicted as the highest probable culture origin. To officially implement the model in real art recognition, more work is needed to decipher how the model predicts, which will more effectively provide insights about what features link to what prediction.
